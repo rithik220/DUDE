@@ -11,7 +11,7 @@ import sys
 
 engine = pyttsx3.init()
 
-client = wolframalpha.Client('J3KPU2-VVYPR6PUV8')
+client = wolframalpha.Client('whatsapp lo septa')
 
 # voices = engine.getProperty('voices')
 # engine.setProperty('voice', voices[len(voices)-1].id)
@@ -151,4 +151,4 @@ if __name__ == '__main__':
             except:
                 webbrowser.open('www.google.com')
         
-        speak('Next Command! Sir!')
+        speak('Next Command! Please!')
