@@ -34,7 +34,7 @@ def greetMe():
 
 greetMe()
 
-speak('Hello Sir,DUDE current stateat your service.')
+speak('Hello Sir,DUDE at your service.')
 speak('Please tell me how can I help you?')
 
 
@@ -113,15 +113,23 @@ if __name__ == '__main__':
             sys.exit()
                                     
         elif 'play music' in query:
-            # speak('okay')
-            # webbrowser.open('www.music.amazon.in')
-            # music_folder = C:\Users\home\Music
-            # music = [stack it up, bad child]
-            # random_music = music_folder + random.choice(music) + '.mp3'
-            # os.system(random_music)
-                  
-            speak('sorry creator was dumb, here is no music! Enjoy talking something else!')
-            
+            speak('Sorry!Oonly from local disc i can play music! Say okay! if I should play the music I have!')
+            local = myCommand()
+
+            if 'ok' in local:
+                try:
+                    speak('playing')
+                    n = random.randint(0,2)
+                    print(n)
+
+                    music_dir = r'C:\Users\home\Music'
+                    song = os.listdir(music_dir)
+                    print(song)
+
+                    os.startfile(os.path.join(music_dir,song[n]))
+
+                except:
+                    speak('sorry creater was dumb, cant play music, enjoy asking something else.')
 
         else:
             query = query
