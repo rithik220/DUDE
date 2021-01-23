@@ -167,7 +167,7 @@ if __name__ == '__main__':
                     def send_sms(number, myCommand):
                         url = 'https://www.fast2sms.com/dev/bulk'
                         params = {
-                            'authorization': 'nvpfrtJGwEURSLPXqegb5Kz68QyxDCN79kVdTmOIY3hcFBlis1tUBSQezunjK8LhHI0CdoMsxDVTYl1X',
+                            'authorization': 'paste auth key of msgng api',
                             'sender_id': 'FastWP',
                             'message': myCommand,
                             'language': 'english',
