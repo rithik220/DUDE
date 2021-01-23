@@ -2,10 +2,13 @@ import pyttsx3
 import webbrowser
 import smtplib
 import random
+import requests
 import speech_recognition as sr
 import wikipedia
 import datetime
 import wolframalpha
+from ecapture import ecapture as ec
+from twilio.rest import Client
 import os
 import sys
 
@@ -34,7 +37,7 @@ def greetMe():
 
 greetMe()
 
-speak('Hello Sir,DUDE at your service.')
+speak('Hello .,DUDE at your service.')
 speak('Please tell me how can I help you?')
 
 
@@ -50,7 +53,7 @@ def myCommand():
         print('User: ' + query + '\n')
         
     except sr.UnknownValueError:
-        speak('Sorry sir! I didn\'t get that! Try typing the command!')
+        speak('Sorry .! I didn\'t get that! Try typing the command!')
         query = str(input('Command: '))
 
     return query
@@ -75,9 +78,30 @@ if __name__ == '__main__':
             speak('okay')
             webbrowser.open('www.gmail.com')
 
-        elif "what up" in query or 'how are you' in query:
+        elif "what is up" in query or 'how are you' in query:
             stMsgs = ['Just doing my thing!', 'I am fine!', 'Nice!', 'I am nice and full of energy']
             speak(random.choice(stMsgs))
+        
+        elif "camera" in query or "take a photo" in query:
+            ec.capture(0, " DUDE Camera ", "img.jpg")
+        
+        elif "who i am" in query:
+            speak("If you talk then definately your human.")
+ 
+        elif "why was you created" in query:
+            speak("Thanks to team DUDE. further It's a secret")
+        
+        elif "who are you" in query:
+            speak("I am your virtual assistant created by Team DUDE")
+ 
+        elif 'reason for you' in query:
+            speak("I was created as a Minor project by Team DUDE ")
+ 
+        # elif 'change background' in query:
+        #     ctypes.windll.user32.SystemParametersInfoW(20, 
+        #                                                0, 
+        #                                                "Location of wallpaper",
+        #                                                0)
 
         elif 'email' in query:
             speak('Who is the recipient? ')
@@ -97,19 +121,19 @@ if __name__ == '__main__':
                     speak('Email sent!')
 
                 except:
-                    speak('Sorry Sir! I am unable to send your message at this moment!')
+                    speak('Sorry ! I am unable to send your message at this moment!')
 
 
         elif 'nothing' in query or 'abort' in query or 'stop' in query:
             speak('okay')
-            speak('Bye Sir, have a good day.')
+            speak('Bye ., have a good day.')
             sys.exit()
            
         elif 'hello' in query:
-            speak('Hello Sir')
+            speak('Hello .')
 
         elif 'bye' in query:
-            speak('Bye Sir, have a good day.')
+            speak('Bye ., have a good day.')
             sys.exit()
                                     
         elif 'play music' in query:
@@ -130,6 +154,34 @@ if __name__ == '__main__':
 
                 except:
                     speak('sorry creater was dumb, cant play music, enjoy asking something else.')
+        
+        elif 'send message' in query:
+            speak('i can only send your message to team DUDE contacts. if okay say yes to proceed.')
+            local = myCommand()
+            if 'yes' in local:
+                try:
+
+                    speak(' tell me your message please.')
+                    m = myCommand()
+
+                    def send_sms(number, myCommand):
+                        url = 'https://www.fast2sms.com/dev/bulk'
+                        params = {
+                            'authorization': 'nvpfrtJGwEURSLPXqegb5Kz68QyxDCN79kVdTmOIY3hcFBlis1tUBSQezunjK8LhHI0CdoMsxDVTYl1X',
+                            'sender_id': 'FastWP',
+                            'message': myCommand,
+                            'language': 'english',
+                            'route': 'p',
+                            'numbers': number
+                        }
+                        response = requests.get(url, params=params)
+                        dic = response.json()
+                        print(dic)
+                    
+                    send_sms("7032972977,8501024681,8074308757,7207775759", myCommand= m)
+
+                except:
+                    speak('creator was dumb. failed to send your mesaage sorry. enjoy asking anything else to your DUDE.')               
 
         else:
             query = query
